@@ -1,0 +1,339 @@
+{
+  "info": {
+    "_postman_id": "f7971f4e-385c-4ed9-b8a4-e5af22135f21",
+    "name": "Kurmavathar",
+    "description": "Dicovers details around Kurma and its avatar. Kurma means turtle, he has been here more than you and most probably met your grandparents taking into account his average life span is 180 years\n\n![](https://images.unsplash.com/photo-1496196614460-48988a57fccf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80 \"Kurma\")",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "What is Kurmavathar?",
+      "item": [
+        {
+          "name": "Who is he?",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "48849305-e87a-4d33-87a9-b0a1a1011b07",
+                "exec": [
+                  "pm.test(\"Check JSON Response body is empty\", function() {",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    pm.expect(_.isEmpty(jsonData)).to.not.eql(false)",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "e2cfe0a1-b560-4555-9e35-0b7082398e9b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "https://en.wikipedia.org/wiki/Kurma",
+            "description": "It was the second incarnation of Lord Vishnu\n\nIn this incarnation, Lord Vishnu helped gods and demons to churn the milky sea and take out the nectar\n\nLord Vishnu further made sure that demons did not get the nectar"
+          },
+          "response": [
+            {
+              "id": "38fca8bb-7c08-424e-86d6-ba4c3b9d37f2",
+              "name": "Example one",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": "https://en.wikipedia.org/wiki/Kurma/ex1"
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "responseTime": null,
+              "body": "Response one"
+            },
+            {
+              "id": "0ac3f879-a676-4bc4-a4d0-21782efef433",
+              "name": "Example2",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "123",
+                    "type": "text"
+                  }
+                ],
+                "url": "https://en.wikipedia.org/wiki/Kurma/ex1"
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "responseTime": null,
+              "body": "Check"
+            }
+          ]
+        },
+        {
+          "name": "Art of Relaxing",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5081f7a0-8f8c-409d-a419-162e76f4b33c",
+                "exec": [
+                  "pm.environment.get(\"variable_key\");"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "e3bf7036-e38b-4ca2-ae02-34ca07cb2e5f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "https://images.fineartamerica.com/images/{{image-id}}",
+            "description": "Feast your eyes with a most satisfying state of a life swimming through the course of its horizon"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "ed721688-9cd6-41ee-a54d-859d679f921c",
+      "description": "Kurmavatara means incarnation of Lord Vishnu as a turtle",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "ebd58894-9412-4b97-8c89-9ea3f8920df7",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "fd9e301e-8992-4d79-9e90-7b5d14172136",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "In culture",
+      "item": [
+        {
+          "name": "Follow on Social Media",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "632cb89d-7a04-47dd-9565-ca2489e235c9",
+                "exec": [
+                  "//var folderID = pm.environment.get('folderID');",
+                  "//pm.test(folderID, function () {",
+                  "",
+                  "//}); ",
+                  "",
+                  "pm.cookies.jar().clear('zendesk.com',(err)=>{",
+                  "    err && console.log(err);",
+                  "});",
+                  "",
+                  "// cookieJar.set(URL,first cookie name,first cookie value, callback(error, cookie));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "aa580c3b-3a6a-49e9-a916-ddbed67b773a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "https://www.instagram.com/kurmavathar",
+            "description": "Redirects to a brute who named his Insta handle as kurmavathar"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "ca63b23f-c2fc-4315-9c82-c159e69211f1"
+    },
+    {
+      "name": "Twitter Flow",
+      "item": [
+        {
+          "name": "Followers",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "992405ad-7069-4457-9cc2-5ea9bb5e1a45",
+                "exec": [
+                  "",
+                  "",
+                  "var template = `",
+                  "    <style type=\"text/css\">",
+                  "        .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+                  "        .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+                  "        .tftable tr {background-color:#ffffff;}",
+                  "        .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+                  "        .tftable tr:hover {background-color:#e0ffff;}",
+                  "    </style>",
+                  "    ",
+                  "    <table class=\"tftable\" border=\"1\">",
+                  "        <tr>",
+                  "            <th>Name</th>",
+                  "            <th>Email</th>",
+                  "        </tr>",
+                  "        ",
+                  "        {{#each response.data.contacts}}",
+                  "            <tr id=row_{{@key}} onClick=\"handleClick(this.id)\">",
+                  "                <td id={{@key}}>{{name}}</td>",
+                  "                <td>{{email}}</td>",
+                  "            </tr>",
+                  "        {{/each}}",
+                  "    </table>",
+                  "`;",
+                  "",
+                  "pm.visualizer.set(template, {",
+                  "    response: JSON.parse(responseBody)",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "9dee77f2-8d03-48ae-8f82-15e5344efa5d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "oauth1",
+              "oauth1": {
+                "tokenSecret": "{{Token_secret}}",
+                "token": "{{Access_token}}",
+                "consumerSecret": "{{Consumer_secret}}",
+                "consumerKey": "{{Consumer_key}}",
+                "addParamsToHeader": true,
+                "signatureMethod": "HMAC-SHA1",
+                "version": "1.0",
+                "addEmptyParamsToSign": false
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "https://api.twitter.com/1.1/followers/ids.json"
+          },
+          "response": []
+        },
+        {
+          "name": "Twitter streams",
+          "_postman_id": "28518a02-4b85-45bb-8676-efb21e588b75",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "oauth1",
+              "oauth1": {
+                "tokenSecret": "{{Token_secret}}",
+                "token": "{{Access_token}}",
+                "consumerSecret": "{{Consumer_secret}}",
+                "consumerKey": "{{Consumer_key}}",
+                "addParamsToHeader": true,
+                "signatureMethod": "HMAC-SHA1",
+                "version": "1.0",
+                "addEmptyParamsToSign": false
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "https://stream.twitter.com/1.1/statuses/sample.json"
+          },
+          "response": []
+        },
+        {
+          "name": "Twi_tw",
+          "_postman_id": "c65caae5-76d1-4e78-824d-bfcffb9202aa",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "oauth1",
+              "oauth1": {
+                "tokenSecret": "{{Token_secret}}",
+                "token": "{{Access_token}}",
+                "consumerSecret": "{{Consumer_secret}}",
+                "consumerKey": "{{Consumer_key}}",
+                "addParamsToHeader": true,
+                "signatureMethod": "HMAC-SHA1",
+                "version": "1.0",
+                "addEmptyParamsToSign": false
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.twitter.com/1.1/trends/closest.json?lat=12.914&long=74.855",
+              "protocol": "https",
+              "host": [
+                "api",
+                "twitter",
+                "com"
+              ],
+              "path": [
+                "1.1",
+                "trends",
+                "closest.json"
+              ],
+              "query": [
+                {
+                  "key": "lat",
+                  "value": "12.914"
+                },
+                {
+                  "key": "long",
+                  "value": "74.855"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "3a53272a-0517-4b95-8a33-a49757b95f92"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "b879c38b-968e-43a4-8b75-afb7a1572953",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "5ca6b4db-62e1-4dab-b873-33c333eeab71",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
