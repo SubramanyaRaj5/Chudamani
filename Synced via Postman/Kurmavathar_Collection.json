@@ -322,7 +322,7 @@
       "request": {
         "method": "GET",
         "header": [],
-        "url": ""
+        "url": "https://api.getpostman.com/collections"
       },
       "response": []
     }
