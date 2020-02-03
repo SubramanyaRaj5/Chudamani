@@ -343,8 +343,10 @@
       "script": {
         "id": "5ca6b4db-62e1-4dab-b873-33c333eeab71",
         "type": "text/javascript",
-        "exec": [
-          ""
+        "exe
+        
+        New Commit;
+        
         ]
       }
     }
