@@ -312,6 +312,19 @@
         }
       ],
       "_postman_id": "3a53272a-0517-4b95-8a33-a49757b95f92"
+    },
+    {
+      "name": "Check Commit",
+      "_postman_id": "efeec520-5de4-47e8-82e1-35377938fb9e",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": ""
+      },
+      "response": []
     }
   ],
   "event": [
