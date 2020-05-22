@@ -32,6 +32,19 @@
         "url": "https://www.google.com"
       },
       "response": []
+    },
+    {
+      "name": "test",
+      "_postman_id": "9a6e003c-db93-490a-b079-5fb0001b8ec1",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": ""
+      },
+      "response": []
     }
   ]
 }
