@@ -1,0 +1,800 @@
+openapi: 3.0.0
+info:
+  version: v1
+  title: OMS - REST API .
+  description: >
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+      ###Lifecycle
+
+      Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+      The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+      
+      ###Lifecycle 2
+
+      Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+      The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackhama.
+  contact:
+    name: MARMOT SOLUTIONS LTD
+    url: 'https://www.coinapi.io'
+  license:
+    name: Apache 2.0
+    url: 'https://github.com/OAI/OpenAPI-Specification/blob/master/https://www.apache.org/licenses/LICENSE-2.0.html'
+servers:
+  - url: 'http://localhost:3001'
+tags:
+  - name: Orders
+    description: >
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+      ###Lifecycle
+
+      Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+      The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+  - name: Balances
+  - name: Positions
+paths:
+  /v1/orders:
+    get:
+      tags:
+        - Orders
+      parameters:
+        - in: query
+          name: exchange_id
+          description: Exchange name
+          required: false
+          schema:
+            type: string
+            example: KRAKEN
+      summary: Get orders
+      description: List your current open orders.
+      responses:
+        '200':
+          description: 'Ok'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/orders'
+    post:
+      tags:
+        - Orders
+      summary: Create new order
+      description: 'You can place two types of orders: limit and market. Orders can only be placed if your account has sufficient funds.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/newOrder'
+      responses:
+        '200':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/orderLive'
+        '400':
+          description: Validation errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createOrder400'
+        '490':
+          description: Exchange not registered
+          content:
+            appliction/json:
+              schema:
+                $ref: '#/components/schemas/messages'
+  /v1/orders/cancel:
+    post:
+      tags:
+        - Orders
+      summary: Cancel order
+      description: Cancel an existing order, can be used to cancel margin, exchange, and derivative orders. You can cancel the order by the internal order ID or exchange order ID.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/cancelOrder'
+      responses:
+        '200': 
+          description: Canceled order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/orderLive'
+        '400':
+          description: Validation errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createOrder400'
+        '490':
+          description: Exchange not registered
+          content:
+            appliction/json:
+              schema:
+                $ref: '#/components/schemas/messages'                   
+  /v1/orders/cancel/all:
+    post:
+      tags:
+        - Orders
+      summary: Cancel all order
+      description: Cancel all existing order.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/cancelAllOrder'
+      responses:
+        '200':
+          description: Result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/messagesOk'        
+  /v1/balances:
+    get:
+      tags:
+        - Balances
+      parameters:
+        - in: query
+          name: exchange_id
+          description: Exchange name
+          required: false
+          schema:
+            type: string
+            example: KRAKEN        
+      summary: Get balances
+      description: Returns all of your balances, including available balance.
+      responses:
+        '200':
+          description: Result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/balances'
+  /v1/positions:
+    get:
+      tags:
+        - Positions
+      parameters:
+        - in: query
+          name: exchange_id
+          description: Exchange name
+          required: false
+          schema:
+            type: string
+            example: KRAKEN        
+      summary: Get positions
+      description: Returns all of your positions.
+      responses:
+        '200':
+          description: Result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/positions'
+components:
+  schemas:
+    orders:
+      type: array
+      items:
+        $ref: '#/components/schemas/order'
+    order:      
+      type: object
+      properties:
+        type:
+          type: string
+          description:
+          example: snapshotOrders
+        exchange_name:
+          type: string
+          example: KRAKEN
+          description: Exchange name
+        data:
+          type: array
+          description: Orders array
+          items:
+            type: object
+            properties:
+              exchange_id:
+                type: string
+                description: Exchange name
+                example: KRAKEN
+              id:
+                type: string
+                description: Client unique identifier for the trade.
+                example: KPP-222389382-AQ
+              client_order_id_format_exchange:
+                type: string
+                description: Hash client id
+                example: f81211e2-27c4-b86a-8143-01088ba9222c
+              exchange_order_id:
+                type: string
+                description: Exchange order id
+                example: 90832ASASAS89789-1112
+              amount_open:
+                type: number
+                description: Amount open
+                example: 0.22
+              amount_filled:
+                type: number
+                description: Amount filled
+                example: 0.00
+              status:
+                description: Order status
+                example: REJECTED
+                $ref: '#/components/schemas/orderStatus'
+              time_order: 
+                type: array
+                description: History of order status changes
+                items:
+                  type: array
+                  items:
+                    type: string
+                    example: ['RECEIVED', '2020-05-27T11:16:20.1677709Z']
+              error_message: 
+                type: string 
+                description: Error message
+                example: "{\"result\":\"error\",\"reason\":\"InsufficientFunds\",\"message\":\"Failed to place buy order on symbol 'BTCUSD' for price $7,000.00 and quantity 0.22 BTC due to insufficient funds\"}"
+              client_order_id:
+                type: string
+                description: Client unique identifier for the trade. 
+                example: KPP-222389382-AQ
+              symbol_exchange:
+                type: string
+                description: The symbol of the order.
+                example: BTCUSD
+              symbol_coinapi:
+                type: string
+                description: The CoinAPI symbol of the order.
+                example: KRAKEN_SPOT_BTC_USD
+              amount_order:
+                type: number
+                description: Quoted decimal amount to purchase.
+                example: 0.045
+              price:
+                type: number
+                description: Quoted decimal amount to spend per unit.
+                example: 0.0783
+              side:
+                type: string
+                description: Buy or Sell
+                enum: [BUY, SELL]
+                example: BUY
+              order_type:
+                type: string
+                description: The order type.
+                enum: [LIMIT]
+                example: LIMIT
+              time_in_force:
+                $ref: '#/components/schemas/timeInForce'
+                description: Time in force is a special instruction used when placing a trade to indicate how long an order will remain active before it is executed or expires. These options are especially important for active traders and allow them to be more specific about the time parameters.
+                example: GOOD_TILL_CANCEL
+              expire_time:
+                type: date
+                description: Required for orders with time_in_force = GOOD_TILL_TIME_EXCHANGE, GOOD_TILL_TIME_OMS
+              exec_inst:
+                $ref: '#/components/schemas/execInst'
+                example: MAKER_OR_CANCEL       
+    newOrder:
+      type: object
+      properties:
+        exchange_id:
+          type: string
+          description: Exchange name
+          example: KRAKEN
+        client_order_id:
+          type: string
+          description: Client unique identifier for the trade.
+          example: KPP-222389382-AQ
+        symbol_exchange:
+          type: string
+          description: The symbol of the order.
+          example: BTCUSD
+        symbol_coinapi:
+          type: string
+          description: The CoinAPI symbol of the order.
+          example: KRAKEN_SPOT_BTC_USD
+        amount_order:
+          type: number
+          description: Quoted decimal amount to purchase.
+          example: 0.045
+        price:
+          type: number
+          description: Quoted decimal amount to spend per unit.
+          example: 0.0783
+        side:
+          type: string
+          enum: [BUY, SELL]
+          description: 'Buy or Sell'
+          example: BUY
+        order_type:
+          type: string
+          description: The order type.
+          enum: [LIMIT]
+          example: LIMIT
+        time_in_force:
+          $ref: '#/components/schemas/timeInForce'
+          description: Time in force is a special instruction used when placing a trade to indicate how long an order will remain active before it is executed or expires. These options are especially important for active traders and allow them to be more specific about the time parameters.
+          example: GOOD_TILL_CANCEL
+        expire_time:
+          type: date
+          description: Required for orders with time_in_force = GOOD_TILL_TIME_EXCHANGE, GOOD_TILL_TIME_OMS
+        exec_inst:
+          $ref: '#/components/schemas/execInst'
+          example: MAKER_OR_CANCEL
+    orderLive:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Result type name
+          example: updateOrder
+        exchange_id:
+          type: string
+          description: Exchange name
+          example: KRAKEN
+        id:
+          type: string
+          description: Client unique identifier for the trade.
+          example: KPP-222389382-AQ
+        client_order_id_format_exchange:
+          type: string
+          description: Hash client id
+          example: f81211e2-27c4-b86a-8143-01088ba9222c
+        exchange_order_id:
+          type: string
+          description: Exchange order id
+          example: 90832ASASAS89789-1112
+        amount_open:
+          type: number
+          description: Amount open
+          example: 0.22
+        amount_filled:
+          type: number
+          description: Amount filled
+          example: 0.00
+        status:
+          description: Order status
+          example: REJECTED
+          $ref: '#/components/schemas/orderStatus'
+        time_order: 
+          type: array
+          description: History of order status changes
+          items:
+            type: array
+            items:
+              type: string
+              example: ['RECEIVED', '2020-05-27T11:16:20.1677709Z']
+        error_message: 
+          type: string 
+          description: Error message
+          example: "{\"result\":\"error\",\"reason\":\"InsufficientFunds\",\"message\":\"Failed to place buy order on symbol 'BTCUSD' for price $7,000.00 and quantity 0.22 BTC due to insufficient funds\"}"
+        client_order_id:
+          type: string
+          description: Client unique identifier for the trade. 
+          example: KPP-222389382-AQ
+        symbol_exchange:
+          type: string
+          description: The symbol of the order.
+          example: BTCUSD
+        symbol_coinapi:
+          type: string
+          description: The CoinAPI symbol of the order.
+          example: KRAKEN_SPOT_BTC_USD
+        amount_order:
+          type: number
+          description: Quoted decimal amount to purchase.
+          example: 0.045
+        price:
+          type: number
+          description: Quoted decimal amount to spend per unit.
+          example: 0.0783
+        side:
+          type: string
+          description: Buy or Sell
+          enum: [BUY, SELL]
+          example: BUY
+        order_type:
+          type: string
+          description: The order type.
+          enum: [LIMIT]
+          example: LIMIT
+        time_in_force:
+          $ref: '#/components/schemas/timeInForce'
+          description: Time in force is a special instruction used when placing a trade to indicate how long an order will remain active before it is executed or expires. These options are especially important for active traders and allow them to be more specific about the time parameters.
+          example: GOOD_TILL_CANCEL
+        expire_time:
+          type: date
+          description: Required for orders with time_in_force = GOOD_TILL_TIME_EXCHANGE, GOOD_TILL_TIME_OMS
+        exec_inst:
+          $ref: '#/components/schemas/execInst'
+          example: MAKER_OR_CANCEL        
+    cancelOrder:
+      type: object
+      properties:
+        exchange_id:
+          type: string
+          description: Exchange name
+          example: KRAKEN
+        exchange_order_id:
+          type: string
+          description: Order Id
+          example: d8574207d9e3b16a4a5511753eeef1751
+        client_order_id:
+          type: string
+          description: Client order Id
+          example: A12345
+    cancelAllOrder:
+      type: object
+      properties:
+        exchange_id:
+          type: string
+          description: Exchange name
+          example: KRAKEN
+    balances:
+      type: array
+      items:
+        $ref: '#/components/schemas/balance'
+    balance:
+      type: object
+      properties:
+        type:
+          type: string
+          example: snapshotBalances
+          description: Result type.
+        exchange_name:
+          type: string
+          description: Exchange name.
+          example: KRAKEN
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: symbol_exchange
+                example: BTC
+              symbol_exchange:
+                type: string
+                example: BTC
+                description: Currency code.
+              symbol_coinapi:
+                type: string
+                example: BTC
+                description: CoinAPI currency code.
+              balance:
+                type: number
+                format: float
+                description: The current balance.
+                example: 0.00134444
+              available:
+                type: number
+                format: float
+                description: The amount that is available to trade.
+                example: 0.00134444
+              locked:
+                type: number
+                format: float
+                description: Blocked funds.
+                example: 0.00000
+              update_origin:
+                type: string
+                description: >
+                  Source of last modification.
+                example: EXCHANGE
+                enum: [INITIALIZATION, BALANCE_MANAGER, EXCHANGE]
+    positions:
+      type: array
+      items:
+        $ref: '#/components/schemas/position'
+    position:
+      type: object
+      properties:
+        type:
+          type: string
+          example: snapshotPositions
+          description: Result type.
+        exchange_name:
+          type: string
+          example: KRAKEN
+          description: Name of exchange.
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: 2873jkjhgdsd78ii
+                description: Unique position ID
+              symbol_exchange:
+                type: string
+                example: BTC
+                description: The contract for this position.
+              symbol_coinapi:
+                type: string
+                example: BTC
+                description: The coinapi contract for this position.
+              avg_entry_price:
+                type: number
+                example: 0.00134444
+              quantity:
+                type: number
+                example: 0.00134444
+                description: The current position amount in contracts.
+              is_buy:
+                type: boolean
+                example: true
+              unrealised_pn_l:
+                type: number
+                example: 0.00000
+                description: Unrealised PNL is all the unrealised profit or loss coming from your portfolio's open positions.
+              leverage:
+                type: number
+                example: 0.00000
+                description: 1 / initMarginReq.
+              cross_margin:
+                type: boolean
+                example: true
+                description: True/false depending on whether you set cross margin on this position.
+              liquidation_price:
+                type: number
+                example: 0.072323
+                description: Once markPrice reaches this price, this position will be liquidated.
+              raw_data:
+                type: string
+                example: xyz
+    timeInForce:
+      type: string
+      enum: [GOOD_TILL_CANCEL, GOOD_TILL_TIME_EXCHANGE, GOOD_TILL_TIME_OMS, FILL_OR_KILL, IMMEDIATE_OR_CANCEL, AUCTION_ONLY, INDICATION_OF_INTEREST]
+      description: >
+        Time in force is a special instruction used when placing a trade to indicate how long an order will remain active before it is executed or expires. These options are especially important for active traders and allow them to be more specific about the time parameters.
+
+
+        | Parameter | Description |
+
+        |-----------|--------|
+
+        | `GOOD_TILL_CANCEL` | A Good-Til-Cancelled (GTC) order is an order to buy or sell a stock that lasts until the order is completed or canceled. Brokerage firms typically limit the length of time an investor can leave a GTC order open.  This time frame may vary from broker to broker.  Investors should contact their brokerage firms to determine what time limit would apply to GTC orders. |
+
+        | `GOOD_TILL_TIME_EXCHANGE` | The GTTE (Good-til-Date/Time) time in force lets you select an expiration date and time up until which an order will continue to work. Setting this attribute requires both a time in force selection of GTD, a date entry in the Expiration Date field, and a time entry in the Expiration Time field if that level of detail is required. Note that if you only enter a good-till date, the unfilled order will cancel at the close of the market on the specified day. |
+
+        | `GOOD_TILL_TIME_OMS` | The GTT (GTTO) supported by OMS. |
+
+        | `FILL_OR_KILL` | Fill or kill (FOK) is a type of time-in-force designation used in securities trading that instructs a brokerage to execute a transaction immediately and completely or not at all. This type of order is most often used by active traders and is usually for a large quantity of stock. The order must be filled in its entirety or canceled (killed). |
+
+        | `IMMEDIATE_OR_CANCEL` | An immediate or cancel order (IOC) is an order to buy or sell a security that executes all or part immediately and cancels any unfilled portion of the order. An IOC order is one of several "duration orders" that investors can use to specify how long the order remains active in the market and under what conditions the order is canceled. Other commonly used duration order types include fill or kill (FOK), all or none (AON) and good ‘till canceled (GTC). Most online trading platforms allow IOC orders to be placed manually or programmed into automated trading strategies. |
+
+        | `AUCTION_ONLY` | This order will be added to the auction-only (AO) book for the next auction for this symbol. |
+
+        | `INDICATION_OF_INTEREST` | An indication of interest (IOI) is an underwriting expression showing a conditional, non-binding interest in buying a security that is currently in registration—awaiting approval by the Securities and Exchange Commission (SEC). The investor's broker is required to provide the investor with a preliminary prospectus. However, IOIs in the mergers and acquisitions world has similar intent but is done differently. |
+
+
+        ##### Time in force options
+
+
+        | Exchange | GTC | GTTE | GTTO | FOK | IOC | AO | IOI |
+
+        | --- | --- | --- | ---- | --- | --- | --- | --- |
+
+        | BINANCE | X | X |  | X | X |  |  |
+
+        | BITFINEX | X | X |  | X | X |  |  |
+
+        | BITMEX | X | X |  |  | X |  |  |
+
+        | BLOCKCHAINEXCHANGE | X | X |  |  | X |  |  |
+
+        | BITSTAMP | X | X |  |  | X |  |  |
+
+        | COINBASE | X |  | X | X | X |  |  |
+
+        | GEMINI | X | X |  | X | X | X | X |
+
+        | KRAKEN | X |  | X |  |  |  |  |
+
+        | POLONIEX | X | X |  | X | X |  |  |
+
+        | HITBTC | X | X |  | X | X |  |  |
+
+        | KRAKENFTS | X | X |  |  | X |  |  |
+    execInst:
+      type: array
+      items:
+        type: string
+        enum: [MAKER_OR_CANCEL]
+      description: >
+        TODO: description exec inst
+
+
+        | Parameter | Description |
+
+        |-----------|--------|
+
+        | `MAKER_OR_CANCEL` | Rests on the continuous order book at a specified price. If any quantity can be filled immediately, the entire order is canceled. |
+
+        ##### Exec inst options
+
+
+        | Exchange | MAKER_OR_CANCEL |
+
+        | --- | --- |
+
+        | BINANCE | X |
+
+        | BITFINEX | X |
+
+        | BITMEX | X |
+
+        | BLOCKCHAINEXCHANGE | X |
+
+        | BITSTAMP |  |
+
+        | COINBASE | X |
+
+        | GEMINI | X |
+
+        | KRAKEN | X |
+
+        | POLONIEX | X |
+
+        | HITBTC |  |
+
+        | KRAKENFTS | X |
+    createOrder400:
+      title: Create order validation error (response)
+      type: object
+      properties:
+        type:
+          type: string
+          example: https://tools.ietf.org/html/rfc7231#section-6.5.1
+        title:
+          type: string
+          example: One or more validation errors occurred.
+        status:      
+          type: number
+          example: 400
+        traceId: 
+          type: string
+          example: d200e8b5-4271a5461ce5342f
+        errors:
+          type: string
+    messagesInfo:
+      title: Message info
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of message
+          example: error 
+        exchange_id: 
+          type: string
+          description: Exchange name
+          example: KRAKEN
+        error_message:
+          type: string
+          description: Error message
+          example: Exchange not registered
+    messagesOk:
+      title: Message ok
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of message
+          example: message 
+        exchange_id: 
+          type: string
+          description: Exchange name
+          example: KRAKEN
+        message:
+          type: string
+          description: Message
+          example: Ok   
+    messages:
+      title: Message
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of message
+          example: message 
+        exchange_id: 
+          type: string
+          description: Exchange name
+          example: KRAKEN
+        message:
+          type: string
+          description: Message
+          example: Ok             
+    orderStatus:
+      type: string
+      enum: [RECEIVED, ROUTING, ROUTED, NEW, PENDING_CANCEL, PARTIALLY_FILLED, FILLED, CANCELED, REJECTED]
+      description: >
+        Order statuses
+
+        ##### Status description
+
+
+        | Name | Possible transitions to | Status description 
+        
+        | --- | --- | --- |
+        
+        | RECEIVED | REJECTED, ROUTING | We received an order and will send it to the exchange immedaitely
+        
+        | ROUTING | ROUTED | We are in the process of sending order to the exchange
+        
+        | ROUTED | REJECTED, NEW, PARTIALLY_FILLED, FILLED, CANCELED | Order was sent to the exchange from our side, but it's not yet active in order book
+        
+        | NEW | PARTIALLY_FILLED, FILLED, PENDING_CANCEL, CANCELED | Order is active in the order book and it's untouched
+        
+        | PENDING_CANCEL | NEW, PARTIALLY_FILLED, FILLED, CANCELED | We received order cancel request and relayed it succesfully to the exchange. 
+        
+        | PARTIALLY_FILLED | FILLED, PENDING_CANCEL, CANCELED | Order is active in the order book and it's partially filled
+        
+        | FILLED | | Order is no longer active in the order book as was completely filled 
+        
+        | CANCELED | | Order is no longer active in the order book as was canceled
+        
+        | REJECTED | | Order was rejected by OMS or exchange.
+
+        ##### Status transitions
+
+
+        | Source Status | Destination status | Description
+        
+        | --- | --- | --- |
+        
+        | | RECEIVED | OMS received new order from you
+        
+        | | NEW | OMS received unseen new order from the exchange (order was relayed to the exchnage outside the OMS)
+        
+        | | PARTIALLY_FILLED | OMS received unseen partially filled order from the exchange (order was relayed to the exchnage outside the OMS)
+        
+        | RECEIVED | REJECTED | OMS rejected your order
+        
+        | RECEIVED | ROUTING | We started relaying order to the exchange
+        
+        | ROUTING | ROUTED | Order was relayed to the exchange and we are waiting to be active in the order book
+        
+        | ROUTED | REJECTED | Exchange rejected your order
+        
+        | ROUTED | NEW | Exchange accepted your passive order into order book
+        
+        | ROUTED | PARTIALLY_FILLED | Exchange actively filled part of your order and the remaining was accepted into order book
+        
+        | ROUTED | FILLED | Exchange actively filled your order in whole.
+        
+        | ROUTED | CANCELED | Exchange canceled your order before accepting it to the order book.
+        
+        | NEW | PARTIALLY_FILLED | Part of your order was filled.
+        
+        | NEW | FILLED | Whole order was filled.
+        
+        | NEW | PENDING_CANCEL | We received cancel request and successfully relayed it to the exchange.
+        
+        | NEW | CANCELED | Your order was canceled.
+        
+        | PARTIALLY_FILLED | FILLED | Remaining active part of the order was filled succesfully.
+        
+        | PARTIALLY_FILLED | PENDING_CANCEL | We received cancel request and successfully relayed it to the exchange.
+        
+        | PARTIALLY_FILLED | CANCELED | Your order was canceled.
+        
+        | PENDING_CANCEL | NEW | Exchange responded to the cancelation message that your order is fully active in the order book.
+        
+        | PENDING_CANCEL | PARTIALLY_FILLED | Your order was filled partially after we relayed cancelation message to the exchange.
+        
+        | PENDING_CANCEL | FILLED | Your order was completely filled before the cancel was executed by the exchange.
+        
+        | PENDING_CANCEL | CANCELED | Your order was canceled.
+
