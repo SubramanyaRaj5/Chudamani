@@ -1,0 +1,22 @@
+{
+  "info": {
+    "_postman_id": "80c127e2-52d3-4434-b398-06f9ba01ef69",
+    "name": "Test",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "One",
+      "_postman_id": "cd821857-b492-4e8e-aaaa-223c4fd3e1aa",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://www.google.com"
+      },
+      "response": []
+    }
+  ]
+}
