@@ -1,0 +1,54 @@
+{
+  "info": {
+    "_postman_id": "5fdb649b-5cc8-4874-af22-d76cdf5b8cdd",
+    "name": "Sarkari",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Hero",
+      "item": [],
+      "_postman_id": "f4883d7d-00f4-4665-b993-a399e4b72629"
+    },
+    {
+      "name": "Nataru",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "e4b4b1b7-af2d-4dc1-b1b6-ef538ebaca86",
+            "exec": [
+              "pm.test(\"Response time is less than 200ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "40d4498e-774c-4725-89c0-08528024a1a8",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "https://postman-echo.com/get"
+      },
+      "response": []
+    },
+    {
+      "name": "ASN",
+      "_postman_id": "2075ad07-2d02-4e56-8703-0d62d55f7c8e",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": "https://postman-echo.com/post"
+      },
+      "response": []
+    }
+  ]
+}
