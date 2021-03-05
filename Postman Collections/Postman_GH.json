@@ -6,11 +6,6 @@
   },
   "item": [
     {
-      "name": "Hero",
-      "item": [],
-      "id": "f4883d7d-00f4-4665-b993-a399e4b72629"
-    },
-    {
       "name": "Nataru",
       "event": [
         {
@@ -26,7 +21,7 @@
           }
         }
       ],
-      "id": "40d4498e-774c-4725-89c0-08528024a1a8",
+      "_postman_id": "40d4498e-774c-4725-89c0-08528024a1a8",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -39,7 +34,7 @@
     },
     {
       "name": "ASN",
-      "id": "2075ad07-2d02-4e56-8703-0d62d55f7c8e",
+      "_postman_id": "2075ad07-2d02-4e56-8703-0d62d55f7c8e",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
