@@ -6,6 +6,11 @@
   },
   "item": [
     {
+      "name": "Hero",
+      "item": [],
+      "id": "f4883d7d-00f4-4665-b993-a399e4b72629"
+    },
+    {
       "name": "Nataru",
       "event": [
         {
@@ -14,14 +19,14 @@
             "id": "e4b4b1b7-af2d-4dc1-b1b6-ef538ebaca86",
             "exec": [
               "pm.test(\"Response time is less than 200ms\", function () {",
-              "    pm.expect(pm.response.responseTime).to.be.below(200);",
+              "    pm.expect(pm.response.responseTime).to.be.below(400);",
               "});"
             ],
             "type": "text/javascript"
           }
         }
       ],
-      "_postman_id": "40d4498e-774c-4725-89c0-08528024a1a8",
+      "id": "40d4498e-774c-4725-89c0-08528024a1a8",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -34,7 +39,7 @@
     },
     {
       "name": "ASN",
-      "_postman_id": "2075ad07-2d02-4e56-8703-0d62d55f7c8e",
+      "id": "2075ad07-2d02-4e56-8703-0d62d55f7c8e",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
