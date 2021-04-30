@@ -19,7 +19,7 @@
             "id": "e4b4b1b7-af2d-4dc1-b1b6-ef538ebaca86",
             "exec": [
               "pm.test(\"Response time is less than 200ms\", function () {",
-              "    pm.expect(pm.response.responseTime).to.be.below(50);",
+              "    pm.expect(pm.response.responseTime).to.be.below(300);",
               "});"
             ],
             "type": "text/javascript"
