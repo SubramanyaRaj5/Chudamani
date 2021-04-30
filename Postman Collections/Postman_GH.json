@@ -39,6 +39,21 @@
     },
     {
       "name": "ASN",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "eaf6d380-b8b8-48ef-bf6c-6fa2e27e531c",
+            "exec": [
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
       "id": "2075ad07-2d02-4e56-8703-0d62d55f7c8e",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
