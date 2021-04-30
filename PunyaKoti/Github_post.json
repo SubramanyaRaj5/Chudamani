@@ -45,10 +45,7 @@
           "script": {
             "id": "eaf6d380-b8b8-48ef-bf6c-6fa2e27e531c",
             "exec": [
-              "",
-              "pm.test(\"Successful POST request\", function () {",
-              "    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
-              "});"
+              ""
             ],
             "type": "text/javascript"
           }
